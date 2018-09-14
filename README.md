@@ -35,7 +35,7 @@ Please [open an issue](../../issues/new) if you find a bug.
 Donate BTC:
 [16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ](bitcoin:16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ)
 
-[![QR code](btcqr.png)](bitcoin:16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ)
+[![QR code](btcqr.svg)](bitcoin:16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ)
 
 ## Notes
 
