@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--
+    Vue router doesn't seem to support custom protocol.
+    i.e <router-link> breaks when base is set to app://-/
+
+    instead, deal with path problems by setting publicPath to /
+
+    <base href="...">
+  -->
+  <meta http-equiv="Content-Security-Policy" content="<%=`
+default-src 'self' 'unsafe-inline';
+img-src data: blob: filesystem: http: https: 'self';
+connect-src data: blob: filesystem: fetch-http: fetch-https: 'self';
+
+base-uri 'self';
+`.trim().replace(/\n+/g, ' ').replace(/;$/, '') %>">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+</html>

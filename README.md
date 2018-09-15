@@ -26,16 +26,16 @@ Please [open an issue](../../issues/new) if you find a bug.
 
 ## Screenshots
 
-![Screenshot 01](ss01.png)
+![Screenshot 01](docs/ss01.png)
 
-![Screenshot 02](ss02.png)
+![Screenshot 02](docs/ss02.png)
 
 ## Donation
 
 Donate BTC:
 [16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ](bitcoin:16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ)
 
-[![QR code](btcqr.svg)](bitcoin:16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ)
+[![QR code](docs/btcqr.svg)](bitcoin:16AuWua5zoNNvkKWw1RepfKFV2g2K1w2cJ)
 
 ## Notes
 

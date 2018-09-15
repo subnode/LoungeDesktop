@@ -1,0 +1,53 @@
+@import '~vue-material/dist/theme/engine.scss';
+
+
+@include md-register-theme('MonoDark', (
+  primary: md-get-palette-color(gray, 100),
+  accent: md-get-palette-color(gray, 400),
+  theme: dark,
+));
+
+@include md-register-theme('MonoLight', (
+  primary: md-get-palette-color(gray, 700),
+  accent: md-get-palette-color(gray, 400),
+  theme: light,
+));
+
+@include md-register-theme('RedDark', (
+  primary: #f01,
+  accent: md-get-palette-color(gray, 300),
+  theme: dark,
+));
+
+@include md-register-theme('RedLight', (
+  primary: #f01,
+  accent: md-get-palette-color(gray, 700),
+  theme: light,
+));
+
+@include md-register-theme('VMDark', (
+  primary: md-get-palette-color(blue, A200),
+  accent: md-get-palette-color(red, A200),
+  theme: dark,
+));
+
+@include md-register-theme('VMLight', (
+  primary: md-get-palette-color(blue, A200),
+  accent: md-get-palette-color(red, A200),
+  theme: light,
+));
+
+
+@import '~vue-material/dist/theme/all.scss';
+
+
+
+// Improve visibility
+
+.md-field.md-disabled::after {
+  background-color: transparent !important;
+}
+
+.md-list .md-selected .md-list-item-content {
+  text-decoration: underline;
+}

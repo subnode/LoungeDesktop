@@ -1,0 +1,34 @@
+:root {
+  --scrollbar-size: 8px;
+}
+
+
+html {
+  cursor: default;
+}
+
+a, input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+  cursor: pointer;
+}
+
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar, ::-webkit-scrollbar-thumb {
+  border-radius: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #777;
+}
