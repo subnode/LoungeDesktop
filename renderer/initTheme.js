@@ -13,7 +13,7 @@ function updateTheme(theme) {
 }
 
 
-// set initial theme (readed from LocalStorage) to improve UX
+// set initial theme (read from LocalStorage) to improve UX
 updateTheme(store.state.preferences.preferences.theme);
 
 store.watch(state => state.preferences.preferences.theme, theme => {
