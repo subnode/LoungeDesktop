@@ -2,8 +2,8 @@ import {ipcRenderer, remote, shell, webFrame} from 'electron';
 import * as fs from 'fs';
 import {promisify} from 'util';
 
-import toPreloadPath from '../../common/lib/preloadPath';
-import {appProtocol, fetchProtocolPrefix, fetchableProtocols} from '../../common/config';
+import toPreloadPath from '../common/lib/preloadPath';
+import {appProtocol, fetchProtocolPrefix, fetchableProtocols} from '../common/config';
 
 
 // make app protocol fetchable

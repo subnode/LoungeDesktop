@@ -138,7 +138,7 @@ import mixinPageAccountApp from './mixinPageAccountApp.js';
 
 const webviewNavigatedDelay = 1500;
 const ipcRenderer = xfi.ipc;
-const preload = xfi.toPreloadPath(FILENAMES.webviewPreloadJs, true);
+const preload = xfi.toPreloadPath(FILENAMES.preloadWebviewJs, true);
 
 
 export default Vue.extend({

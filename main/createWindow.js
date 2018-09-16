@@ -13,7 +13,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const windowOffsetX = 60;
 const windowOffsetY = windowOffsetX;
 
-const preload = toPreloadPath(FILENAMES.rendererPreloadJs, false);
+const preload = toPreloadPath(FILENAMES.preloadRendererJs, false);
 
 // for preventing GC
 const aliveWindowSet = new Set();
