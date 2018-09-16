@@ -1,8 +1,8 @@
 import {EventEmitter} from 'events';
 import fetch from 'node-fetch';
 
-import generateF from './f';
 import Na from './Na';
+import generateF from './f';
 
 
 const xProductVersion = $O('1.1.0');
@@ -154,8 +154,10 @@ export default class Znc extends EventEmitter {
   async apiRequest(method, url, body = null, _headers = {}, raw = false) {
     await this.login(false);
 
-    const headers = {..._headers};
-    headers.Authorization = `Bearer ${this.$_loginInfo.webApiServerCredential.accessToken}`;
+    const headers = {
+      ..._headers,
+      Authorization: `Bearer ${this.$_loginInfo.webApiServerCredential.accessToken}`,
+    };
 
     return this.$_request(method, url, body, headers, raw);
   }
