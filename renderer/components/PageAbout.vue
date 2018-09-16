@@ -128,12 +128,16 @@ export default {
   },
   data() {
     return {
-      title$$: `About - ${appName}`,
       appName,
       logo,
       version: VERSION,
       credits: [],
     };
+  },
+  computed: {
+    title$$() {
+      return this.$t('PageAbout.windowTitle', [appName]);
+    },
   },
   created() {
     fetch(`/${FILENAMES.thirdPartyNoticesJson}`)

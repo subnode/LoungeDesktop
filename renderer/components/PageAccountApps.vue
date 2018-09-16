@@ -134,7 +134,7 @@ export default Vue.extend({
   },
   computed: {
     title$$() {
-      return `@ ${this.account.name} - ${appName}`;
+      return this.$t('PageAccountApps.windowTitle', [appName, this.account.name]);
     },
     appStyle() {
       const config = this.appStyleConfig;

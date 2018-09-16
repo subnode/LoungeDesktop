@@ -258,7 +258,6 @@ export default {
   ],
   data() {
     return {
-      title$$: appName,
       maxAccounts: MAX_ACCOUNTS,
       appName,
       protocol: `npf${clientId}`,   // TODO:
@@ -282,6 +281,9 @@ export default {
     };
   },
   computed: {
+    title$$() {
+      return this.$t('PageAccounts.windowTitle', [appName]);
+    },
     accounts() {
       return this.$store.state.accounts.accounts;
     },

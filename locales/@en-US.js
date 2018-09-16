@@ -45,6 +45,7 @@ export default {
       headerCna: 'Connected Nintendo Account',
     },
     PageAccounts: {
+      windowTitle: '{0}',
       title: '{0}',
       ManageAccounts: 'Manage accounts',
       FinishManagingAccounts: 'Finish managing accounts',
@@ -65,6 +66,7 @@ export default {
       dialogRemoveAccountText: 'Are you sure you want to remove account {0} from the list?',
     },
     PageAbout: {
+      windowTitle: 'About - {0}',
       title: 'About {0}',
       version: 'version {0}',
       GitHubRepository: 'GitHub repository',
@@ -72,6 +74,7 @@ export default {
       NowLoading: 'Now loading...',
     },
     PagePreferences: {
+      windowTitle: 'Preferences - {0}',
       title: 'Preferences',
       Language: 'Language',
       Theme: 'Theme',
@@ -102,11 +105,13 @@ export default {
       miscNonFetch: 'Misc. (account images, app images, etc.)',
     },
     PageAccountApps: {
+      windowTitle: '@ {1} - {0}',
       title: 'Applications',
       emptyTitle: 'No applications',
       emptyDescription: 'Your account seems to have no applications.',
     },
     PageAccountApp: {
+      windowTitle: '{2} @ {1} - {0}',
       title: '{0}',
       OpenDevTools: 'Open DevTools',
       snackbarImageSaved: 'Image has been saved to {0}.',

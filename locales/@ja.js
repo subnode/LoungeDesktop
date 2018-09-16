@@ -45,6 +45,7 @@ export default {
       headerCna: '連携しているニンテンドーアカウント',
     },
     PageAccounts: {
+      windowTitle: '{0}',
       title: '{0}',
       ManageAccounts: 'アカウントの管理',
       FinishManagingAccounts: 'アカウントの管理を終了',
@@ -65,6 +66,7 @@ export default {
       dialogRemoveAccountText: 'アカウント {0} をリストから削除してもよろしいですか？',
     },
     PageAbout: {
+      windowTitle: '{0} について - {0}',
       title: '{0} について',
       version: 'バージョン {0}',
       GitHubRepository: 'GitHub リポジトリ',
@@ -72,6 +74,7 @@ export default {
       NowLoading: '読み込み中…',
     },
     PagePreferences: {
+      windowTitle: '設定 - {0}',
       title: '設定',
       Language: '言語',
       Theme: 'テーマ',
@@ -102,11 +105,13 @@ export default {
       miscNonFetch: 'その他（アカウント画像やアプリ画像など）',
     },
     PageAccountApps: {
+      windowTitle: '@ {1} - {0}',
       title: 'アプリ一覧',
       emptyTitle: 'アプリがありません',
       emptyDescription: 'このアカウントには利用できるアプリが無いようです',
     },
     PageAccountApp: {
+      windowTitle: '{2} @ {1} - {0}',
       title: '{0}',
       OpenDevTools: '開発者用ツールを開く',
       snackbarImageSaved: '画像は {0} に保存されました',

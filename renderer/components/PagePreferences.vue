@@ -260,7 +260,6 @@ export default {
   },
   data() {
     return {
-      title$$: `Preferences - ${appName}`,
       mutationFromRemote: false,
       locales,
       themes,
@@ -268,6 +267,9 @@ export default {
     };
   },
   computed: {
+    title$$() {
+      return this.$t('PagePreferences.windowTitle', [appName]);
+    },
     $_storePreferences() {
       return this.$store.state.preferences.preferences;
     },

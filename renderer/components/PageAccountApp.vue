@@ -184,7 +184,7 @@ export default Vue.extend({
   },
   computed: {
     title$$() {
-      return `${this.app.name} @ ${this.account.name} - ${appName}`
+      return this.$t('PageAccountApp.windowTitle', [appName, this.account.name, this.app.name]);
     },
     developerMode() {
       return this.$store.state.preferences.preferences.developerMode;
