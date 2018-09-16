@@ -1,5 +1,4 @@
-napi/
-napi*
+f.js
 
 
 ## from https://github.com/github/gitignore/blob/master/Node.gitignore
