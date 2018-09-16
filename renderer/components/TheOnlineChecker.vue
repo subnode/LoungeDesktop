@@ -1,7 +1,7 @@
 <template>
 <transition name="bar">
   <div class="offline" v-show="!online">
-    Your device seems to be offline. Please check your internet connection.
+    {{$t('TheOnlineChecker.text')}}
   </div>
 </transition>
 </template>

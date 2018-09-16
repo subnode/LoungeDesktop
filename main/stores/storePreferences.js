@@ -2,8 +2,9 @@ import {EventEmitter} from 'events';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {currentPreferencesFileVersion, defaultPreferences} from '../../common/config';
+import {currentPreferencesFileVersion} from '../../common/config';
 import {userDataDirectory, preferencesFilename} from '../lib/mainConfig';
+import getDefaultPreferences from '../lib/defaultPreferences';
 import debounceWrapper from '../lib/debounce';
 import * as ipc from '../lib/ipc';
 import LdError from '../lib/Error';
@@ -32,7 +33,7 @@ class StorePreferences extends EventEmitter {
             throw readError;
           }
           // first launch; use default preferences
-          data = JSON.stringify(defaultPreferences);
+          data = JSON.stringify(getDefaultPreferences());
         }
         // parse
         data = JSON.parse(data);

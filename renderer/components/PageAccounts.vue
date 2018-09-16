@@ -1,52 +1,48 @@
 <template>
 <base-layout :class="{managing: managingAccounts}" no-scroll-horizontal>
   <template slot="toolbar">
-    <!-- md-button class="button-home md-icon-button" to="/" disabled @dragstart.prevent>
-      <md-icon>home</md-icon>
-      <md-tooltip>Return to the homepage</md-tooltip>
-    </md-button -->
     <h1 class="title md-title">
-      {{appName}}
+      {{$t('PageAccounts.title', [appName])}}
     </h1>
     <md-menu md-direction="bottom-start" md-align-trigger>
       <md-button class="md-icon-button" md-menu-trigger>
         <md-icon>more_vert</md-icon>
-        <md-tooltip md-direction="left">More&hellip;</md-tooltip>
+        <md-tooltip md-direction="left">{{$t('More')}}</md-tooltip>
       </md-button>
       <md-menu-content>
         <!-- -->
         <md-menu-item v-if="!managingAccounts" v-show="accounts.length" @click="startManagingAccounts">
           <md-icon class="md-primary">edit</md-icon>
-          <span class="menu-text">Manage accounts</span>
+          <span class="menu-text">{{$t('PageAccounts.ManageAccounts')}}</span>
         </md-menu-item>
         <md-menu-item v-else @click="finishManagingAccounts">
           <md-icon class="md-primary">done</md-icon>
-          <span class="menu-text">Finish managing accounts</span>
+          <span class="menu-text">{{$t('PageAccounts.FinishManagingAccounts')}}</span>
         </md-menu-item>
         <!-- -->
         <md-menu-item @click="addAccount" :disabled="accountLimitReached">
           <md-icon class="md-primary">person_add</md-icon>
-          <span class="menu-text">Add an account</span>
+          <span class="menu-text">{{$t('PageAccounts.AddAccount')}}</span>
         </md-menu-item>
         <md-menu-item @click="showAddAccountByUrlDialog = true" :disabled="accountLimitReached || !addAccountStatus.pendingCount">
           <md-icon class="md-primary">input</md-icon>
-          <span class="menu-text">Add an account by URL</span>
+          <span class="menu-text">{{$t('PageAccounts.AddAccountByUrl')}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item to="/preferences" @dragstart.prevent>
           <md-icon class="md-primary">settings</md-icon>
-          <span class="menu-text">Preferences</span>
+          <span class="menu-text">{{$t('menu.Preferences')}}</span>
         </md-menu-item>
         <md-menu-item to="/about" target="_blank" @dragstart.prevent>
           <md-icon class="md-primary">info</md-icon>
-          <span class="menu-text">About {{appName}}</span>
+          <span class="menu-text">{{$t('menu.About', [appName])}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item @click="quit">
           <md-icon class="ld-red">close</md-icon>
-          <span class="menu-text">Quit Lounge Desktop</span>
+          <span class="menu-text">{{$t('menu.Quit', [appName])}}</span>
         </md-menu-item>
       </md-menu-content>
     </md-menu>
@@ -80,7 +76,7 @@
           </div>
           <md-button class="md-list-action md-icon-button" @click.stop.prevent="startAccountInfoDialog(account)" @mousedown.stop>
             <md-icon>info</md-icon>
-            <md-tooltip>Show account information of {{account.name}}</md-tooltip>
+            <md-tooltip>{{$t('PageAccounts.tipShowAccountInfo', [account.name])}}</md-tooltip>
           </md-button>
         </md-list-item>
       </transition-group>
@@ -89,16 +85,16 @@
         <md-speed-dial-target @click="addAccount" :disabled="accountLimitReached">
           <md-icon>person_add</md-icon>
           <md-tooltip md-direction="left">
-            Add an account
+            {{$t('PageAccounts.AddAccount')}}
             <template v-if="accountLimitReached">
-              (up to {{maxAccounts}} accounts supported)
+              &#32;{{$t('PageAccounts.upToSupported', [maxAccounts])}}
             </template>
           </md-tooltip>
         </md-speed-dial-target>
         <md-speed-dial-content>
           <md-button class="md-icon-button" @click="startManagingAccounts">
             <md-icon>edit</md-icon>
-            <md-tooltip md-direction="left">Manage accounts</md-tooltip>
+            <md-tooltip md-direction="left">{{$t('PageAccounts.ManageAccounts')}}</md-tooltip>
           </md-button>
         </md-speed-dial-content>
       </md-speed-dial>
@@ -125,7 +121,7 @@
           >
             <span>
               <md-icon class="account-thumb">menu</md-icon>
-              <md-tooltip>Drag to move {{account.name}}</md-tooltip>
+              <md-tooltip>{{$t('PageAccounts.tipDragToMove', [account.name])}}</md-tooltip>
             </span>
             <md-avatar class="account-avatar">
               <img :src="account.imageUri" @dragstart.prevent>
@@ -138,11 +134,11 @@
             </div>
             <md-button class="md-list-action md-icon-button" @click.stop.prevent="startAccountInfoDialog(account)" @mousedown.stop>
               <md-icon>info</md-icon>
-              <md-tooltip>Show account information of {{account.name}}</md-tooltip>
+              <md-tooltip>{{$t('PageAccounts.tipShowAccountInfo', [account.name])}}</md-tooltip>
             </md-button>
             <md-button class="md-list-action md-icon-button ld-red" @click.stop.prevent="startRemoveAccountDialog(account)" @mousedown.stop>
               <md-icon>remove</md-icon>
-              <md-tooltip>Remove {{account.name}}</md-tooltip>
+              <md-tooltip>{{$t('PageAccounts.tipRemove', [account.name])}}</md-tooltip>
             </md-button>
           </md-list-item>
         </transition-group>
@@ -151,15 +147,15 @@
       <md-speed-dial v-show="managingAccounts" class="md-bottom-right">
         <md-speed-dial-target class="md-primary" @click="finishManagingAccounts">
           <md-icon>done</md-icon>
-          <md-tooltip md-direction="left">Finish managing accounts</md-tooltip>
+          <md-tooltip md-direction="left">{{$t('PageAccounts.FinishManagingAccounts')}}</md-tooltip>
         </md-speed-dial-target>
         <md-speed-dial-content>
           <md-button class="md-icon-button" @click="addAccount" :disabled="accountLimitReached">
             <md-icon>person_add</md-icon>
           <md-tooltip md-direction="left">
-            Add an account
+            {{$t('PageAccounts.AddAccount')}}
             <template v-if="accountLimitReached">
-              (up to {{maxAccounts}} accounts supported)
+              {{$t('PageAccounts.upToSupported', [maxAccounts])}}
             </template>
           </md-tooltip>
           </md-button>
@@ -168,69 +164,66 @@
     </template>
     <!-- account limit reached -->
     <div class="account-limit-reached" v-if="accountLimitReached">
-      Account limit reached.
+      {{$t('PageAccounts.AccountLimitReached')}}
     </div>
     <!-- on no accounts -->
     <md-empty-state
       v-if="!accounts.length"
       v-show="!accounts.length"
       md-icon="people"
-      md-label="Add your account"
-      md-description="Your accounts will be shown here."
+      :md-label="$t('PageAccounts.emptyTitle')"
+      :md-description="$t('PageAccounts.emptyDescription')"
     >
       <md-button class="md-primary md-raised" @click="addAccount" :disabled="accountLimitReached">Add an account</md-button>
     </md-empty-state>
 
     <!-- snackbar shown on account added -->
     <md-snackbar class="snackbar-account-added" md-position="left" :md-active.sync="showAccountAddedSnackbar">
-      <span>
-        New account&#32;<plate-account class="plate" :account="addedAccount" avatar-class="md-small"/>&#32;has been added.
-      </span>
+      <i18n path="PageAccounts.snackbarAddAccount" tag="span">
+        <plate-account class="plate" :account="addedAccount" avatar-class="md-small"/>
+      </i18n>
       <md-button class="md-primary" @click="showAccountAddedSnackbar = false">
-        OK
+        {{$t('button.OK')}}
       </md-button>
     </md-snackbar>
 
     <!-- dialog for adding account by URL -->
     <md-dialog class="dialog-add-account-by-url" :md-fullscreen="false" :md-active.sync="showAddAccountByUrlDialog" @md-closed="finishAddAccountByURLDialog(false)">
-      <md-dialog-title>Add account by URL</md-dialog-title>
+      <md-dialog-title>{{$t('PageAccounts.URL')}}</md-dialog-title>
       <md-dialog-content>
-        Enter an URL which starts with&#32;<code>{{protocol}}://</code>
-        <br>
+        <i18n path="PageAccounts.dialogAddAccountByUrlTitle" tag="div">
+          <code>{{protocol}}://</code>
+        </i18n>
         <md-field>
-          <label>URL</label>
+          <label>{{$t('PageAccounts.URL')}}</label>
           <md-input type="text" v-model="addAccountCallbackUrl" :placeholder="`${protocol}://`"/>
         </md-field>
       </md-dialog-content>
       <md-dialog-actions>
-        <md-button @click="finishAddAccountByURLDialog(false)">Cancel</md-button>
-        <md-button class="md-primary" @click="finishAddAccountByURLDialog(true)">Add</md-button>
+        <md-button @click="finishAddAccountByURLDialog(false)">
+          {{$t('button.Cancel')}}
+        </md-button>
+        <md-button class="md-primary" @click="finishAddAccountByURLDialog(true)">
+          {{$t('button.Add')}}
+        </md-button>
       </md-dialog-actions>
     </md-dialog>
 
     <!-- dialog for removing account -->
     <md-dialog class="dialog-remove-account" :md-fullscreen="false" :md-active.sync="showRemoveAccountDialog" @md-closed="finishRemoveAccountDialog(false)">
-      <md-dialog-title>Remove account</md-dialog-title>
+      <md-dialog-title>{{$t('PageAccounts.dialogRemoveAccountTitle')}}</md-dialog-title>
       <md-dialog-content>
-        Are you sure you want to remove account&#32;<plate-account class="plate" :account="removingAccount" avatar-class="md-small"/>&#32;from the list?
-        <!-- p>
-          Note that:
-          <ul class="no-margin">
-            <li>
-              Your account will be removed just from the list.
-            </li>
-            <li>
-              The account won't be deleted from the server by this action.
-            </li>
-            <li>
-              Removed accounts can be re-registered on the list.
-            </li>
-          </ul>
-        </p -->
+        <i18n path="PageAccounts.dialogRemoveAccountText" tag="div">
+          <plate-account class="plate" :account="removingAccount" avatar-class="md-small"/>
+        </i18n>
       </md-dialog-content>
       <md-dialog-actions>
-        <md-button class="md-primary" @click="finishRemoveAccountDialog(false)">Cancel</md-button>
-        <md-button class="ld-red" @click="finishRemoveAccountDialog(true)">Remove</md-button>
+        <md-button class="md-primary" @click="finishRemoveAccountDialog(false)">
+          {{$t('button.Cancel')}}
+        </md-button>
+        <md-button class="ld-red" @click="finishRemoveAccountDialog(true)">
+          {{$t('button.Remove')}}
+        </md-button>
       </md-dialog-actions>
     </md-dialog>
 

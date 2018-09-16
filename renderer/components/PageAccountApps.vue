@@ -3,41 +3,41 @@
   <template slot="toolbar">
     <md-button class="button-home md-icon-button" to="/" @dragstart.native.prevent>
       <md-icon>home</md-icon>
-      <md-tooltip>Return to the homepage</md-tooltip>
+      <md-tooltip>{{$t('tooltip.ReturnToHome')}}</md-tooltip>
     </md-button>
     <h1 class="title md-title">
-      Applications
+      {{$t('PageAccountApps.title')}}
     </h1>
     <the-account-indicator :account="account"/>
     <md-menu md-direction="bottom-start" md-align-trigger>
       <md-button class="md-icon-button" md-menu-trigger>
         <md-icon>more_vert</md-icon>
-        <md-tooltip md-direction="left">More&hellip;</md-tooltip>
+        <md-tooltip md-direction="left">{{$t('More')}}</md-tooltip>
       </md-button>
       <md-menu-content>
         <md-menu-item @click="showAccountInfoDialog = true">
           <md-icon class="md-primary">account_circle</md-icon>
-          <span class="menu-text">Account information</span>
+          <span class="menu-text">{{$t('menu.AccountInfo')}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item to="/" @dragstart.prevent>
           <md-icon class="md-primary">home</md-icon>
-          <span class="menu-text">Homepage</span>
+          <span class="menu-text">{{$t('menu.Homepage')}}</span>
         </md-menu-item>
         <md-menu-item to="/preferences" @dragstart.prevent>
           <md-icon class="md-primary">settings</md-icon>
-          <span class="menu-text">Preferences</span>
+          <span class="menu-text">{{$t('menu.Preferences')}}</span>
         </md-menu-item>
         <md-menu-item to="/about" target="_blank" @dragstart.prevent>
           <md-icon class="md-primary">info</md-icon>
-          <span class="menu-text">About {{appName}}</span>
+          <span class="menu-text">{{$t('menu.About', [appName])}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item @click="quit">
           <md-icon class="ld-red">close</md-icon>
-          <span class="menu-text">Quit Lounge Desktop</span>
+          <span class="menu-text">{{$t('menu.Quit', [appName])}}</span>
         </md-menu-item>
       </md-menu-content>
     </md-menu>
@@ -84,8 +84,8 @@
           v-if="appsFetched && !apps.length"
           class="no-apps"
           md-icon="apps"
-          md-label="No applications"
-          md-description="Your account seems to have no applications."
+          :md-label="$t('PageAccountApps.emptyTitle')"
+          :md-description="$t('PageAccountApps.emptyDescription')"
         ></md-empty-state>
       </div>
     </div>

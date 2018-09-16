@@ -2,7 +2,6 @@ import defaultAccountIcon from './baseline-person-24px.svg';
 import defaultAppIcon from './baseline-web-24px.svg';
 
 
-
 export const appName = 'Lounge Desktop';
 
 export const appProtocol = 'app';
@@ -18,11 +17,13 @@ export const fetchableProtocols = [
   'https',
 ];
 
+export const fallbackLocale = 'en-US';
+
 export const routerMode = 'history';
 
 export const currentAccountsFileVersion = 1;
 
-export const currentPreferencesFileVersion = 1;
+export const currentPreferencesFileVersion = 2;
 
 export const themes = [
   {
@@ -97,7 +98,7 @@ export const appPlaceholder = {
 export const defaultPreferences = {
   version: currentPreferencesFileVersion,
   developerMode: false,
-  language: 'en-US',
+  language: fallbackLocale,
   theme: 'RedDark',
   showNaInfo: true,
   applyCustomCssToWebview: true,

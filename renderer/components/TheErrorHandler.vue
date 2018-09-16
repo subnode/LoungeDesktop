@@ -2,95 +2,102 @@
 <div>
   <md-snackbar class="snackbar-page-inexistent" md-position="left" :md-active.sync="pageInexistent$_$.show">
     <span>
-      Page {{pageInexistent$_$.data.fullPath}} does not exist.
+      {{$t('TheErrorHandler.pageInexistent', [pageInexistent$_$.data.fullPath])}}
     </span>
     <md-button class="md-primary" @click="pageInexistent$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-account-removed" md-position="left" :md-active.sync="accountRemoved$_$.show">
-    <span>
-      Account&#32;<plate-account class="plate" :account="accountRemoved$_$.data" avatar-class="md-small"/>&#32;has been removed.
-    </span>
+    <i18n path="TheErrorHandler.accountRemoved" tag="span">
+      <plate-account class="plate" :account="accountRemoved$_$.data" avatar-class="md-small"/>
+    </i18n>
     <md-button class="md-primary" @click="accountRemoved$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-account-inexistent" md-position="left" :md-active.sync="accountInexistent$_$.show">
     <span>
-      Account {{accountInexistent$_$.data}} does not exist.
+      {{$t('TheErrorHandler.accountInexistent', [accountInexistent$_$.data])}}
     </span>
     <md-button class="md-primary" @click="accountInexistent$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-app-inexistent" md-position="left" :md-active.sync="appInexistent$_$.show">
-    <span>
-      App {{appInexistent$_$.data.appId}} does not exist in account&#32;<plate-account class="plate" :account="appInexistent$_$.data.account" avatar-class="md-small"/>.
-    </span>
+    <i18n path="TheErrorHandler.appInexistent" tag="span">
+      <span>{{appInexistent$_$.data.appId}}</span>
+      <plate-account class="plate" :account="appInexistent$_$.data.account" avatar-class="md-small"/>
+    </i18n>
     <md-button class="md-primary" @click="appInexistent$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-new-account-error" md-position="left" :md-active.sync="newAccountError$_$.show">
     <span>
-      An error has occured while adding account:<br>
-      {{newAccountError$_$.data}}.
+      {{$t('TheErrorHandler.newAccountError')}}
+      <br>
+      {{newAccountError$_$.data}}
     </span>
     <md-button class="md-primary" @click="newAccountError$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-io-write-error" md-position="left" :md-active.sync="ioWriteError$_$.show">
     <span>
-      Failed to save {{ioWriteError$_$.data.file}}:<br>
+      {{$t('TheErrorHandler.ioWriteError', [ioWriteError$_$.data.file])}}
+      <br>
       {{ioWriteError$_$.data.text}}
     </span>
     <md-button class="md-primary" @click="ioWriteError$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-api-request-error" md-position="left" :md-active.sync="apiRequestError$_$.show">
     <span>
-      An error has occured during the API request:<br>
+      {{$t('TheErrorHandler.apiRequestError')}}
+      <br>
       <template v-if="apiRequestError$_$.data.url">
-        [on {{apiRequestError$_$.data.url}}]:<br>
+        {{$t('TheErrorHandler.apiRequestErrorUrl', [apiRequestError$_$.data.url])}}
+        <br>
       </template>
       {{apiRequestError$_$.data.text}}
     </span>
     <md-button class="md-primary" @click="apiRequestError$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-share-interop-error" md-position="left" :md-active.sync="shareInteropError$_$.show">
     <span>
-      Failed to process share data:<br>
+      {{$t('TheErrorHandler.shareInteropError')}}
+      <br>
       {{shareInteropError$_$.data.text}}
     </span>
     <md-button class="md-primary" @click="shareInteropError$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 
   <md-snackbar class="snackbar-share-image-save-error" md-position="left" :md-active.sync="shareImageSaveError$_$.show">
     <span>
       <template v-if="shareImageSaveError$_$.data.file">
-        Failed to save image to {{shareImageSaveError$_$.data.file}}:<br>
+        {{$t('TheErrorHandler.shareImageSaveError', [shareImageSaveError$_$.data.file])}}
       </template>
       <template v-else>
-        Failed to save image:<br>
+        {{$t('TheErrorHandler.shareImageSaveErrorWithoutFilePath')}}
       </template>
+      <br>
       {{shareImageSaveError$_$.data.text}}
     </span>
     <md-button class="md-primary" @click="shareImageSaveError$_$.show = false">
-      OK
+      {{$t('button.OK')}}
     </md-button>
   </md-snackbar>
 </div>

@@ -3,57 +3,57 @@
   <template slot="toolbar">
     <md-button class="button-home md-icon-button" to="/" @dragstart.native.prevent>
       <md-icon>home</md-icon>
-      <md-tooltip>Return to the homepage</md-tooltip>
+      <md-tooltip>{{$t('tooltip.ReturnToHome')}}</md-tooltip>
     </md-button>
     <md-button class="button-home md-icon-button" to=".." @dragstart.native.prevent>
       <md-icon>apps</md-icon>
-      <md-tooltip>Return to the application list of {{account.name}}</md-tooltip>
+      <md-tooltip>{{$t('tooltip.ReturnToApps', [account.name])}}</md-tooltip>
     </md-button>
     <h1 class="title md-title">
-      {{app.name}}
+      {{$t('PageAccountApp.title', [app.name])}}
     </h1>
     <the-account-indicator :account="account"/>
     <md-menu md-direction="bottom-start" md-align-trigger>
       <md-button class="md-icon-button" md-menu-trigger>
         <md-icon>more_vert</md-icon>
-        <md-tooltip md-direction="left">More&hellip;</md-tooltip>
+        <md-tooltip md-direction="left">{{$t('More')}}</md-tooltip>
       </md-button>
       <md-menu-content>
         <md-menu-item v-if="developerMode" @click="openWebviewDevTools">
           <md-icon class="md-primary">build</md-icon>
-          <span class="menu-text">Open DevTools</span>
+          <span class="menu-text">{{$t('PageAccountApp.OpenDevTools')}}</span>
         </md-menu-item>
         <md-divider v-if="developerMode"/>
         <!-- divider -->
         <md-menu-item @click="showAccountInfoDialog = true">
           <md-icon class="md-primary">account_circle</md-icon>
-          <span class="menu-text">Account information</span>
+          <span class="menu-text">{{$t('menu.AccountInfo')}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item to=".." @dragstart.prevent>
           <md-icon class="md-primary">apps</md-icon>
-          <span class="menu-text">Application list</span>
+          <span class="menu-text">{{$t('menu.ApplicationList')}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item to="/" @dragstart.prevent>
           <md-icon class="md-primary">home</md-icon>
-          <span class="menu-text">Homepage</span>
+          <span class="menu-text">{{$t('menu.Homepage')}}</span>
         </md-menu-item>
         <md-menu-item to="/preferences" @dragstart.prevent>
           <md-icon class="md-primary">settings</md-icon>
-          <span class="menu-text">Preferences</span>
+          <span class="menu-text">{{$t('menu.Preferences')}}</span>
         </md-menu-item>
         <md-menu-item to="/about" target="_blank" @dragstart.prevent>
           <md-icon class="md-primary">info</md-icon>
-          <span class="menu-text">About {{appName}}</span>
+          <span class="menu-text">{{$t('menu.About', [appName])}}</span>
         </md-menu-item>
         <md-divider/>
         <!-- divider -->
         <md-menu-item @click="quit">
           <md-icon class="ld-red">close</md-icon>
-          <span class="menu-text">Quit Lounge Desktop</span>
+          <span class="menu-text">{{$t('menu.Quit', [appName])}}</span>
         </md-menu-item>
       </md-menu-content>
     </md-menu>
@@ -79,16 +79,16 @@
     <!-- snackbar shown on image saved -->
     <md-snackbar class="snackbar-image-saved" md-position="left" :md-active.sync="showImageSavedSnackbar" @md-closed="savedImageFilePath = ''">
       <span>
-        Image has been saved to {{savedImageFilePath}}.
+        {{$t('PageAccountApp.snackbarImageSaved', [savedImageFilePath])}}
       </span>
       <md-button class="md-primary" @click="showImageSavedSnackbar = false">
-        OK
+        {{$t('button.OK')}}
       </md-button>
     </md-snackbar>
 
     <!-- dialog for sharing -->
     <md-dialog class="dialog-share" :md-active.sync="showShareDialog" :md-fullscreen="false" @md-closed="onShareDialogClosed">
-      <md-dialog-title>Share</md-dialog-title>
+      <md-dialog-title>{{$t('PageAccountApp.dialogShareTitle')}}</md-dialog-title>
       <md-dialog-content class="dialog-content-share md-scrollbar">
         <div class="share-container">
           <div class="share-image-container" v-if="!shareData.$$isPlaceholder">
@@ -99,18 +99,22 @@
           </div>
           <div class="share-text-container">
             <md-field>
-              <label>Text</label>
+              <label>{{$t('PageAccountApp.dialogShareLabelText')}}</label>
               <md-textarea v-model="shareData.text"></md-textarea>
             </md-field>
           </div>
           <div class="share-actions-container">
-            <md-button class="md-raised md-primary" @click="saveShareImage">Save image</md-button>
+            <md-button class="md-raised md-primary" @click="saveShareImage">
+              {{$t('PageAccountApp.dialogShareButtonSaveImage')}}
+            </md-button>
             <!-- TODO: -->
           </div>
         </div>
       </md-dialog-content>
       <md-dialog-actions>
-        <md-button @click="showShareDialog = false">Close</md-button>
+        <md-button @click="showShareDialog = false">
+          {{$t('button.Close')}}
+        </md-button>
       </md-dialog-actions>
     </md-dialog>
 

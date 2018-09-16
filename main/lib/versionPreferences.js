@@ -1,4 +1,5 @@
 import {currentPreferencesFileVersion} from '../../common/config';
+import getDefaultPreferences from './defaultPreferences';
 
 
 /**
@@ -9,16 +10,12 @@ export function migratePreferences(oldPreferences) {
   const oldVersion = oldPreferences.version;
   const preferences = JSON.parse(JSON.stringify(oldPreferences));
 
-  switch (oldVersion) {
-/*
-    case 2:
-      // ...
-      // fallthrough
+  const defaultPreferences = getDefaultPreferences();
 
-    case 3:
-      // ...
+  switch (oldVersion) {
+    case 1:
+      preferences.language = defaultPreferences.language;
       // fallthrough
-//*/
 
     case currentPreferencesFileVersion:
       break;

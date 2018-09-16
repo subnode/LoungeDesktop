@@ -3,10 +3,10 @@
   <template slot="toolbar">
     <md-button class="button-home md-icon-button" to="/" @dragstart.native.prevent>
       <md-icon>home</md-icon>
-      <md-tooltip>Return to the homepage</md-tooltip>
+      <md-tooltip>{{$t('tooltip.ReturnToHome')}}</md-tooltip>
     </md-button>
     <h1 class="title md-title">
-      About {{appName}}
+      {{$t('PageAbout.title', [appName])}}
     </h1>
   </template>
 
@@ -19,19 +19,23 @@
         </span>
       </div>
       <div class="version">
-        version {{version}}
+        {{$t('PageAbout.version', [version])}}
       </div>
       <div class="copyright">
         &copy; 2018&#32;<a href="https://github.com/subnode" @click="openExternal">subnode</a>&#32;All rights reserved.
       </div>
       <div class="links">
-        <a href="https://github.com/subnode/LoungeDesktop" @click="openExternal">GitHub repository</a>
+        <a href="https://github.com/subnode/LoungeDesktop" @click="openExternal">
+          {{$t('PageAbout.GitHubRepository')}}
+        </a>
         &#32;|&#32;
-        <a href="https://github.com/subnode/LoungeDesktop/issues" @click="openExternal">Report a bug</a>
+        <a href="https://github.com/subnode/LoungeDesktop/issues" @click="openExternal">
+          {{$t('PageAbout.ReportBug')}}
+        </a>
       </div>
     </div>
 
-    <!-- credits -->
+    <!-- credits, no localization for this section -->
     <div class="credits">
       <h2 class="credits-title">Credits</h2>
       <p>
@@ -39,7 +43,7 @@
       </p>
       <template v-if="!credits.length">
         <p>
-          now loading...
+          {{$t('PageAbout.NowLoading')}}
         </p>
       </template>
       <template v-else>
@@ -49,9 +53,17 @@
             :key="`list-${credit.id}#${credit.version}`"
             class="credit-list-item"
           >
-            <a :href="`#block-${credit.id}#${credit.version}`" @click.prevent="scrollTo(`block-${credit.id}#${credit.version}`)" @dragstart.prevent>
-              <span class="credit-name">{{credit.name}}</span>
-              <span class="credit-version" v-if="credit.version">&#32;version {{credit.version}}</span>
+            <a
+             :href="`#block-${credit.id}#${credit.version}`"
+             @click.prevent="scrollTo(`block-${credit.id}#${credit.version}`)"
+             @dragstart.prevent
+            >
+              <span class="credit-name">
+                {{credit.name}}
+              </span>
+              <span class="credit-version" v-if="credit.version">
+                &#32;version {{credit.version}}
+              </span>
             </a>
           </li>
         </ul>
@@ -63,8 +75,12 @@
         >
           <div class="credit-block-title-container">
             <h3 class="credit-block-title">
-              <a class="credit-name" :href="credit.url" @click.prevent="openExternal">{{credit.name}}</a>
-              <span class="credit-version" v-if="credit.version">&#32;version {{credit.version}}</span>
+              <a class="credit-name" :href="credit.url" @click.prevent="openExternal">
+                {{credit.name}}
+              </a>
+              <span class="credit-version" v-if="credit.version">
+                &#32;version {{credit.version}}
+              </span>
             </h3>
             <md-button class="credit-block-actions md-icon-button" @click="selectAll">
               <md-icon>select_all</md-icon>
@@ -73,7 +89,9 @@
               <md-icon>arrow_upward</md-icon>
             </md-button>
           </div>
-          <md-content class="credit-block-text md-scrollbar">{{credit.text}}</md-content>
+          <md-content class="credit-block-text md-scrollbar">
+            {{credit.text}}
+          </md-content>
         </div>
       </template>
     </div>

@@ -7,9 +7,9 @@ import {defaultPreferences} from '../../common/config';
  * @returns {Preferences}
  */
 export function getPreferences() {
-  const strPreferences = window.localStorage.getItem('preferences');
-
   let preferences = JSON.parse(JSON.stringify(defaultPreferences));
+
+  const strPreferences = window.localStorage.getItem('preferences');
   if (strPreferences) {
     try {
       preferences = JSON.parse(strPreferences);

@@ -3,10 +3,10 @@
   <template slot="toolbar">
     <md-button class="button-home md-icon-button" to="/" @dragstart.native.prevent>
       <md-icon>home</md-icon>
-      <md-tooltip>Return to the homepage</md-tooltip>
+      <md-tooltip>{{$t('tooltip.ReturnToHome')}}</md-tooltip>
     </md-button>
     <h1 class="title md-title">
-      Preferences
+      {{$t('PagePreferences.title')}}
     </h1>
   </template>
 
@@ -16,56 +16,99 @@
         <div class="md-layout-item md-size-100 md-layout md-gutter indent">
           <div class="md-layout-item md-size-100">
             <md-field>
-              <label for="theme">Theme</label>
-              <md-select v-model="preferences.theme" name="theme" id="theme">
-                <md-option value="RedDark">Red Dark</md-option>
-                <md-option value="RedLight">Red Light</md-option>
-                <md-option value="MonoDark">Mono Dark</md-option>
-                <md-option value="MonoLight">Mono Light</md-option>
-                <md-option value="VMDark">VM Dark</md-option>
-                <md-option value="VMLight">VM Light</md-option>
+              <label for="language">
+                {{$t('PagePreferences.Language')}}
+                <template v-if="$t('PagePreferences.Language').toLowerCase() !== 'language'">
+                  &#32;(Language)
+                </template>
+              </label>
+              <md-select v-model="preferences.language" name="language" id="language">
+                <md-option
+                 v-for="locale in locales"
+                 :key="locale.id"
+                 :value="locale.id"
+                >
+                  {{locale.name}}
+                  <template v-if="locale.localizedName">
+                    &#32;({{locale.localizedName}})
+                  </template>
+                </md-option>
               </md-select>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100">
-            <md-switch class="md-primary" v-model="preferences.showNaInfo">Show Nintendo Account information on the account list</md-switch>
+            <md-field>
+              <label for="theme">{{$t('PagePreferences.Theme')}}</label>
+              <md-select v-model="preferences.theme" name="theme" id="theme">
+                <md-option
+                 v-for="theme in themes"
+                 :key="theme.id"
+                 :value="theme.id"
+                >{{theme.name}}</md-option>
+              </md-select>
+            </md-field>
           </div>
           <div class="md-layout-item md-size-100">
-            <md-switch class="md-primary" v-model="preferences.applyCustomCssToWebview">Apply custom styles to webviews</md-switch>
+            <md-switch class="md-primary" v-model="preferences.showNaInfo">
+              {{$t('PagePreferences.showNaInfo')}}
+            </md-switch>
           </div>
           <div class="md-layout-item md-size-100">
-            <md-switch class="md-primary" v-model="preferences.saveWindowSize">Save window size</md-switch>
+            <md-switch class="md-primary" v-model="preferences.applyCustomCssToWebview">
+              {{$t('PagePreferences.applyCustomCssToWebview')}}
+            </md-switch>
+          </div>
+          <div class="md-layout-item md-size-100">
+            <md-switch class="md-primary" v-model="preferences.saveWindowSize">
+              {{$t('PagePreferences.saveWindowSize')}}
+            </md-switch>
           </div>
           <div class="md-layout-item md-size-50">
             <md-field>
-              <label>Window width</label>
+              <label>{{$t('PagePreferences.WindowWidth')}}</label>
               <md-input type="number" min="0" v-model="preferences.windowSize.width"/>
             </md-field>
           </div>
           <div class="md-layout-item md-size-50">
             <md-field>
-              <label>Window height</label>
+              <label>{{$t('PagePreferences.WindowHeight')}}</label>
               <md-input type="number" min="0" v-model="preferences.windowSize.height"/>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100">
-            <md-switch class="md-primary" v-model="preferences.persistWebviewSessions">Persist webview sessions</md-switch>
+            <md-switch class="md-primary" v-model="preferences.persistWebviewSessions">
+              {{$t('PagePreferences.PersistWebviewSessions')}}
+            </md-switch>
           </div>
           <div class="md-layout-item md-large-size-100">
             <md-field>
-              <label>Prefetch all accounts' tokens</label>
+              <label>{{$t('PagePreferences.loginOnStartupLabel')}}</label>
+              <span class="md-prefix" v-if="$t('PagePreferences.loginOnStartupPrefix')">
+                {{$t('PagePreferences.loginOnStartupPrefix')}}
+              </span>
               <md-input type="number" min="-1" v-model.number="preferences.loginOnStartup"/>
-              <span class="md-suffix">msec. after startup</span>
-              <md-tooltip>Set -1 to disable</md-tooltip>
+              <span class="md-suffix" v-if="$t('PagePreferences.loginOnStartupSuffix')">
+                {{$t('PagePreferences.loginOnStartupSuffix')}}
+              </span>
+              <md-tooltip>{{$t('PagePreferences.loginOnStartupTip')}}</md-tooltip>
             </md-field>
           </div>
           <div class="md-layout-item md-large-size-100">
             <md-field>
-              <label>Prefetch all accounts' application list</label>
+              <label>{{$t('PagePreferences.fetchAppListOnStartupLabel')}}</label>
+              <span class="md-prefix" v-if="$t('PagePreferences.fetchAppListOnStartupPrefix')">
+                {{$t('PagePreferences.fetchAppListOnStartupPrefix')}}
+              </span>
               <md-input type="number" min="-1" v-model.number="preferences.fetchAppListOnStartup" :disabled="preferences.loginOnStartup === -1"/>
-              <span class="md-suffix">msec. after fetching tokens</span>
-              <md-tooltip v-if="preferences.loginOnStartup === -1">This is disabled because token prefetch is disabled</md-tooltip>
-              <md-tooltip v-else>Set -1 to disable</md-tooltip>
+              <span class="md-suffix" v-if="$t('PagePreferences.fetchAppListOnStartupSuffix')">
+                {{$t('PagePreferences.fetchAppListOnStartupSuffix')}}
+              </span>
+              <md-tooltip v-if="preferences.loginOnStartup !== -1">
+                {{$t('PagePreferences.fetchAppListOnStartupTip')}}
+              </md-tooltip>
+              <md-tooltip v-else>
+                {{$t('PagePreferences.fetchAppListOnStartupTipDisabled')}}
+              </md-tooltip>
             </md-field>
           </div>
         </div><!-- .indent -->
@@ -73,7 +116,7 @@
 
       <div class="md-layout-item md-small-size-100 md-layout md-gutter pane">
         <md-subheader class="md-layout-item md-size-100 md-primary">
-          Advanced configuration
+          {{$t('PagePreferences.AdvancedConfiguration')}}
         </md-subheader>
         <div class="md-layout-item md-size-100 md-layout md-gutter indent">
           <md-subheader class="md-layout-item md-size-100">
@@ -87,7 +130,7 @@
           </div -->
           <div class="md-layout-item md-size-100">
             <md-field>
-              <label>User agent</label>
+              <label>{{$t('PagePreferences.UserAgent')}}</label>
               <md-input type="text" v-model="preferences.napi.znc.userAgent"/>
             </md-field>
           </div>
@@ -101,12 +144,12 @@
             <md-field>
               <label for="zncIaoi">x-isanalyticsoptedin</label>
               <md-select v-model="preferences.napi.znc.isAnalyticsOptedIn" name="zncIaoi" id="zncIaoi">
-                <md-option value="true">true</md-option>
-                <md-option value="false">false</md-option>
+                <md-option value="true">{{$t('PagePreferences.true')}}</md-option>
+                <md-option value="false">{{$t('PagePreferences.false')}}</md-option>
                 <md-option value="auto">
-                  Auto
+                  {{$t('PagePreferences.Auto')}}
                   <md-tooltip>
-                    Use the value retrieved from your account.
+                    {{$t('PagePreferences.isAnalyticsOptedInAutoTip')}}
                   </md-tooltip>
                 </md-option>
               </md-select>
@@ -116,12 +159,12 @@
             <md-field>
               <label for="zncIaaoi">x-isappanalyticsoptedin</label>
               <md-select v-model="preferences.napi.znc.isAppAnalyticsOptedIn" name="zncIaaoi" id="zncIaaoi">
-                <md-option value="true">true</md-option>
-                <md-option value="false">false</md-option>
+                <md-option value="true">{{$t('PagePreferences.true')}}</md-option>
+                <md-option value="false">{{$t('PagePreferences.false')}}</md-option>
                 <md-option value="auto">
-                  Auto
+                  {{$t('PagePreferences.Auto')}}
                   <md-tooltip>
-                    Use the value of x-isanalyticsoptedin ({{preferences.napi.znc.isAnalyticsOptedIn}}).
+                    {{$t('PagePreferences.isAppAnalyticsOptedInAutoTip', [preferences.napi.znc.isAnalyticsOptedIn])}}
                   </md-tooltip>
                 </md-option>
               </md-select>
@@ -139,13 +182,13 @@
           </div -->
           <div class="md-layout-item md-size-100">
             <md-field>
-              <label>User agent</label>
+              <label>{{$t('PagePreferences.UserAgent')}}</label>
               <md-input type="text" v-model="preferences.napi.na.userAgent"/>
             </md-field>
           </div>
 
           <md-subheader class="md-layout-item md-size-100">
-            Webview
+            {{$t('PagePreferences.Webview')}}
           </md-subheader>
           <!-- div class="md-layout-item md-size-100">
             <md-field>
@@ -155,13 +198,13 @@
           </div -->
           <div class="md-layout-item md-size-100">
             <md-field>
-              <label>User agent</label>
+              <label>{{$t('PagePreferences.UserAgent')}}</label>
               <md-input type="text" v-model="preferences.napi.webview.userAgent"/>
             </md-field>
           </div>
 
           <md-subheader class="md-layout-item md-size-100">
-            Misc. fetch (share images)
+            {{$t('PagePreferences.miscFetch')}}
           </md-subheader>
           <!-- div class="md-layout-item md-size-100">
             <md-field>
@@ -171,13 +214,13 @@
           </div -->
           <div class="md-layout-item md-size-100">
             <md-field>
-              <label>User agent</label>
+              <label>{{$t('PagePreferences.UserAgent')}}</label>
               <md-input type="text" v-model="preferences.napi.miscFetch.userAgent"/>
             </md-field>
           </div>
 
           <md-subheader class="md-layout-item md-size-100">
-            Misc. (account images, app images, etc.)
+            {{$t('PagePreferences.miscNonFetch')}}
           </md-subheader>
           <!-- div class="md-layout-item md-size-100">
             <md-field>
@@ -187,7 +230,7 @@
           </div -->
           <div class="md-layout-item md-size-100">
             <md-field>
-              <label>User agent</label>
+              <label>{{$t('PagePreferences.UserAgent')}}</label>
               <md-input type="text" v-model="preferences.napi.miscNonFetch.userAgent"/>
             </md-field>
           </div>
@@ -200,7 +243,8 @@
 
 
 <script>
-import {appName} from '../../common/config';
+import {appName, themes} from '../../common/config';
+import {locales} from '../../locales/index';
 
 import BaseLayout from './BaseLayout.vue';
 
@@ -218,6 +262,8 @@ export default {
     return {
       title$$: `Preferences - ${appName}`,
       mutationFromRemote: false,
+      locales,
+      themes,
       preferences: clone(this.$store.state.preferences.preferences),
     };
   },

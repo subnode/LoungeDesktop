@@ -1,7 +1,7 @@
 <template>
 <div>
   <md-dialog class="dialog-account-info" :md-fullscreen="false" :md-active.sync="showProxy">
-    <md-dialog-title>Account Information</md-dialog-title>
+    <md-dialog-title>{{$t('DialogAccountInfo.title')}}</md-dialog-title>
     <md-dialog-content>
       <md-list class="md-double-line">
         <md-list-item>
@@ -16,7 +16,7 @@
         <md-divider/>
         <!-- divider -->
         <md-subheader class="subheader md-primary">
-          Connected Nintendo Account
+          {{$t('DialogAccountInfo.headerCna')}}
         </md-subheader>
         <md-list-item>
           <div class="md-list-item-text">
@@ -27,7 +27,7 @@
       </md-list>
     </md-dialog-content>
     <md-dialog-actions>
-      <md-button class="md-primary" @click="showProxy = false">OK</md-button>
+      <md-button class="md-primary" @click="showProxy = false">{{$t('button.OK')}}</md-button>
     </md-dialog-actions>
   </md-dialog>
 </div>
